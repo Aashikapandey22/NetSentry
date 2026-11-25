@@ -1,0 +1,401 @@
+/* ==============================================================================
+   NETSENTRY ENTERPRISE SOC DESIGN SYSTEM (v3.0 Refined)
+   Color Palette: Deep Midnight Navy, Slate Glass Surfaces, Cyan/Blue Highlights
+   Inspired by CrowdStrike Falcon, Datadog Security, and Cloudflare SOC Dashboards
+   ============================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    /* Primary Foundations: Rich Midnight Navy Palette */
+    --ns-canvas: #070B14;               /* Deepest Midnight Navy Canvas */
+    --ns-surface: #0D1424;              /* Primary Surface Layer */
+    --ns-surface-elevated: #131D33;     /* Elevated Card Background */
+    --ns-surface-subtle: #18233C;       /* Pill, Code & Chip Background */
+    
+    /* Hairline Precision Borders */
+    --ns-border: #1E2D4A;               /* Standard Surface Border */
+    --ns-border-subtle: #162238;        /* Hairline Divider */
+    --ns-border-focus: #2563EB;         /* Focused/Active Accent Border */
+    --ns-border-hover: #2D4166;         /* Hover State Border */
+
+    /* Typography Scale */
+    --ns-text-primary: #F8FAFC;         /* Clean Crisp Headings & Values */
+    --ns-text-secondary: #94A3B8;       /* Labels, Subtitles, Descriptions */
+    --ns-text-muted: #64748B;           /* Timestamps, Footers, Placeholders */
+
+    /* Brand Accents */
+    --ns-blue: #2563EB;                 /* Enterprise Blue */
+    --ns-blue-glow: rgba(37, 99, 235, 0.25);
+    --ns-blue-subtle: rgba(37, 99, 235, 0.12);
+    --ns-cyan: #06B6D4;                 /* Secondary Accent */
+
+    /* Threat Status Semantics */
+    --ns-safe: #10B981;                 /* BENIGN Network Traffic */
+    --ns-safe-bg: rgba(16, 185, 129, 0.12);
+    --ns-safe-border: rgba(16, 185, 129, 0.28);
+    
+    --ns-threat: #EF4444;               /* Detected Intrusions & Attacks */
+    --ns-threat-bg: rgba(239, 68, 68, 0.12);
+    --ns-threat-border: rgba(239, 68, 68, 0.28);
+
+    --ns-warn: #F59E0B;                 /* Anomaly / Threshold Alert */
+    --ns-warn-bg: rgba(245, 158, 11, 0.12);
+    --ns-warn-border: rgba(245, 158, 11, 0.28);
+}
+
+/* ==============================================================================
+   RESET & ELIMINATE STREAMLIT CHROME ARTIFACTS
+   ============================================================================== */
+
+header[data-testid="stHeader"] {
+    background-color: transparent !important;
+    height: 2.5rem !important;
+}
+
+header[data-testid="stHeader"] svg {
+    fill: var(--ns-text-secondary) !important;
+}
+
+.stApp {
+    background-color: var(--ns-canvas) !important;
+    color: var(--ns-text-primary) !important;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    letter-spacing: -0.01em;
+}
+
+/* Main inner container padding - optimized for all laptop/desktop screens */
+.main .block-container {
+    padding-top: 1.25rem !important;
+    padding-bottom: 3rem !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    max-width: 1400px !important;
+}
+
+/* Typography Hierarchy */
+h1 {
+    font-size: 1.65rem !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.025em !important;
+    color: #FFFFFF !important;
+    margin-bottom: 0.25rem !important;
+}
+
+h2 {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em !important;
+    color: #F8FAFC !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+h3 {
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.015em !important;
+    color: #E2E8F0 !important;
+}
+
+p, span, label, div {
+    color: var(--ns-text-primary);
+}
+
+/* ==============================================================================
+   SIDEBAR ARCHITECTURE & UNIFIED BRANDING
+   ============================================================================== */
+
+section[data-testid="stSidebar"] {
+    background-color: var(--ns-surface) !important;
+    border-right: 1px solid var(--ns-border) !important;
+}
+
+section[data-testid="stSidebar"] .block-container {
+    padding-top: 1.5rem !important;
+    padding-left: 1.15rem !important;
+    padding-right: 1.15rem !important;
+}
+
+/* Streamlit standard sidebar nav items styling */
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] {
+    border-top: 1px solid var(--ns-border-subtle);
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] ul {
+    gap: 3px;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a {
+    color: var(--ns-text-secondary) !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    transition: all 0.15s ease-in-out !important;
+    background-color: transparent !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] a:hover {
+    background-color: var(--ns-surface-subtle) !important;
+    color: #FFFFFF !important;
+}
+
+section[data-testid="stSidebar"] [data-testid="stSidebarNav"] [aria-current="page"] {
+    background-color: var(--ns-blue-subtle) !important;
+    color: #60A5FA !important;
+    border-left: 3px solid var(--ns-blue) !important;
+    font-weight: 600 !important;
+}
+
+/* ==============================================================================
+   PREMIUM CARD & KPI METRIC COMPONENT TOKENS
+   ============================================================================== */
+
+.ns-card {
+    background-color: var(--ns-surface-elevated);
+    border: 1px solid var(--ns-border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    margin-bottom: 1.25rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ns-card:hover {
+    border-color: var(--ns-border-hover);
+}
+
+.ns-metric-card {
+    background: linear-gradient(180deg, var(--ns-surface-elevated) 0%, rgba(13, 20, 36, 0.8) 100%);
+    border: 1px solid var(--ns-border);
+    border-radius: 8px;
+    padding: 1.1rem 1.25rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 110px;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.ns-metric-card:hover {
+    border-color: var(--ns-border-hover);
+    transform: translateY(-1px);
+}
+
+.ns-metric-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ns-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ns-metric-val {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin: 0.25rem 0;
+}
+
+.ns-metric-sub {
+    font-size: 0.72rem;
+    color: var(--ns-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+/* ==============================================================================
+   CYBERSECURITY STATUS BADGES & ALERT BANNERS
+   ============================================================================== */
+
+.ns-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.ns-badge-benign {
+    background-color: var(--ns-safe-bg);
+    color: var(--ns-safe);
+    border: 1px solid var(--ns-safe-border);
+}
+
+.ns-badge-attack {
+    background-color: var(--ns-threat-bg);
+    color: var(--ns-threat);
+    border: 1px solid var(--ns-threat-border);
+}
+
+.ns-badge-warn {
+    background-color: var(--ns-warn-bg);
+    color: var(--ns-warn);
+    border: 1px solid var(--ns-warn-border);
+}
+
+.ns-badge-neutral {
+    background-color: var(--ns-surface-subtle);
+    color: var(--ns-text-secondary);
+    border: 1px solid var(--ns-border);
+}
+
+.ns-banner-benign {
+    background-color: var(--ns-safe-bg);
+    border-left: 4px solid var(--ns-safe);
+    border-radius: 6px;
+    padding: 0.9rem 1.25rem;
+    color: #A7F3D0;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+}
+
+.ns-banner-attack {
+    background-color: var(--ns-threat-bg);
+    border-left: 4px solid var(--ns-threat);
+    border-radius: 6px;
+    padding: 0.9rem 1.25rem;
+    color: #FECACA;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+}
+
+.ns-banner-info {
+    background-color: var(--ns-blue-subtle);
+    border-left: 4px solid var(--ns-blue);
+    border-radius: 6px;
+    padding: 0.9rem 1.25rem;
+    color: #BFDBFE;
+    margin-bottom: 1.25rem;
+    font-size: 0.85rem;
+}
+
+/* ==============================================================================
+   BUTTONS & FORM CONTROLS
+   ============================================================================== */
+
+button[kind="primary"], .stButton > button {
+    background-color: var(--ns-blue) !important;
+    color: #FFFFFF !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    padding: 0.5rem 1.15rem !important;
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3) !important;
+    transition: all 0.15s ease-in-out !important;
+}
+
+button[kind="primary"]:hover, .stButton > button:hover {
+    background-color: #1D4ED8 !important;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.45) !important;
+    transform: translateY(-1px) !important;
+}
+
+button[kind="secondary"] {
+    background-color: var(--ns-surface-subtle) !important;
+    color: var(--ns-text-primary) !important;
+    border: 1px solid var(--ns-border) !important;
+}
+
+/* File Uploader Container */
+[data-testid="stFileUploader"] {
+    background-color: var(--ns-surface-elevated) !important;
+    border: 1px dashed var(--ns-border) !important;
+    border-radius: 8px !important;
+    padding: 1.25rem !important;
+    transition: border-color 0.2s ease;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: #3B82F6 !important;
+}
+
+[data-testid="stFileUploader"] * {
+    color: var(--ns-text-primary) !important;
+}
+
+[data-testid="stFileUploader"] small {
+    color: var(--ns-text-secondary) !important;
+}
+
+/* Tables and DataFrames */
+.stDataFrame {
+    border-radius: 6px !important;
+    border: 1px solid var(--ns-border) !important;
+    background-color: var(--ns-surface-elevated) !important;
+}
+
+/* Code Snippets */
+code {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.8rem !important;
+    background-color: var(--ns-surface-subtle) !important;
+    color: #E2E8F0 !important;
+    padding: 0.2rem 0.4rem !important;
+    border-radius: 4px !important;
+    border: 1px solid var(--ns-border-subtle) !important;
+}
+
+/* Segmented Modern Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 6px;
+    border-bottom: 1px solid var(--ns-border) !important;
+    background-color: transparent !important;
+    padding-bottom: 2px;
+}
+
+.stTabs [data-baseweb="tab"] {
+    color: var(--ns-text-secondary) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
+    padding: 0.45rem 1rem !important;
+    background-color: var(--ns-surface) !important;
+    border-radius: 6px 6px 0 0 !important;
+    border: 1px solid transparent !important;
+    transition: all 0.15s ease;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: #FFFFFF !important;
+    background-color: var(--ns-surface-subtle) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    color: #60A5FA !important;
+    background-color: var(--ns-surface-elevated) !important;
+    border-top: 1px solid var(--ns-border) !important;
+    border-left: 1px solid var(--ns-border) !important;
+    border-right: 1px solid var(--ns-border) !important;
+    border-bottom: 2px solid var(--ns-blue) !important;
+    font-weight: 600 !important;
+}
+
+/* Expanders */
+[data-testid="stExpander"] {
+    background-color: var(--ns-surface-elevated) !important;
+    border: 1px solid var(--ns-border) !important;
+    border-radius: 6px !important;
+}
+
+/* Compact System Status Block in Sidebar */
+.ns-sidebar-status {
+    background: linear-gradient(180deg, var(--ns-surface-elevated) 0%, rgba(13, 20, 36, 0.9) 100%);
+    border: 1px solid var(--ns-border);
+    border-radius: 6px;
+    padding: 0.85rem;
+    margin-top: 1.25rem;
+}
